@@ -6,6 +6,7 @@ const bodyPartSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
+  exercises: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' }],
 });
 
 export default mongoose.model('BodyPart', bodyPartSchema);
