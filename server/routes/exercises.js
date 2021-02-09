@@ -1,43 +1,28 @@
 /* eslint-disable import/extensions */
 import express from 'express';
-import Exercise from '../models/exercise.js';
+import {
+  getExercices,
+  getExercice,
+  updateExercise,
+  addExercise,
+  deleteExercise,
+} from '../controllers/exercises.js';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  try {
-    const exercises = await Exercise.find().populate('targetedBodyParts');
-    res.status(200).json(exercises);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// getting all Exercises
+router.get('/', getExercices);
 
-router.post('/', async (req, res) => {
-  const exercise = new Exercise({
-    name: req.body.name,
-    description: req.body.description,
-    targetedBodyParts: req.body.targetedBodyParts,
-  });
-  try {
-    const newExercise = await exercise.save();
-    res.status(201).json(newExercise);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
+// inserting single Exercise
+router.post('/', addExercise);
 
-router.get('/:id', async (req, res) => {
-  try {
-    const exercise = await Exercise.findById(req.params.id).populate('targetedBodyParts');
-    if (exercise == null) {
-      res.status(404).json({ message: 'Cannot find given exercise' });
-    } else {
-      res.status(200).json(exercise);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// getting Exercise by id
+router.get('/:id', getExercice);
+
+// deleting Exercise by id
+router.delete('/:id', deleteExercise);
+
+// updating single Exercise
+router.patch('/:id', updateExercise);
 
 export default router;
