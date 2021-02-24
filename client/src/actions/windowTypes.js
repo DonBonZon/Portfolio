@@ -1,0 +1,2 @@
+export const EXTEND_DRAWER = 'EXTEND_DRAWER';
+export const SHRINK_DRAWER = 'SHRINK_DRAWER';

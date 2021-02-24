@@ -10,10 +10,7 @@ const exerciseSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  targetedBodyParts: [{
-    type: mongoose.Schema.Types.ObjectId, ref: 'BodyPart',
-  },
-  ],
+  targetedBodyParts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'BodyPart' }],
 });
 
 export default mongoose.model('Exercise', exerciseSchema);

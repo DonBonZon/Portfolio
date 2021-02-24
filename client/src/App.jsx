@@ -1,9 +1,14 @@
 import React from 'react';
+import { CssBaseline } from '@material-ui/core';
+import NavBar from './components/NavBar';
+import SideDrawer from './components/SideDrawer';
 
 function App() {
   return (
     <div>
-      <h1>TEST</h1>
+      <CssBaseline />
+      <NavBar />
+      <SideDrawer />
     </div>
   );
 }
